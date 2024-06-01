@@ -1,0 +1,207 @@
+#!/bin/bash
+chmod +x ProjektKameraStarten
+chmod 777 ProjektKameraStarten
+
+echo
+echo "Herzlich Willkommen!"
+echo
+echo "Dieses Skript soll die Inbetriebnahme der Roboter erleichtern."
+echo 
+echo "Es führt automatisch die Befehle aus die nötig sind, um ROS und die Kameraerkennung zu starten."
+echo
+echo "Außerdem wird überprüft, ob sich der Anwender bzw. die Andwenderin im richtigen WLAN befindet."
+echo
+echo "Kann es los gehen? (Schreibe J für Ja bzw. N für Nein)"
+echo
+read WeiterOderNicht
+
+if [ "$WeiterOderNicht" == "J" ]
+	then
+	echo =============================================================================================================================================
+	echo "Auf gehts! Im ersten Schritt wird sich nun ein Terminal öffnen, welches den Befehl roscore ausführt. Dieser Befehl startet somit ROS!"
+	echo =============================================================================================================================================
+	sleep 5
+	./roscore.sh
+	echo "Im zweiten Schritt wird sich nun ein weiteres Terminal öffnen, welches den Befehl rosrun ros_bridge_server rosrun ros_bridge_server ausführt."
+	echo
+	echo "Dieser Befehl startet somit den ROS Bridge Server, dieser wird für die kabellose Kommunikation zwischen dem Roboter und dem PC benötigt."
+	echo =============================================================================================================================================
+	sleep 5
+	./rosrun.sh
+	echo "Nun wird überprüft, ob Du dich mit dem richtigen WLAN (MartinRouterKing) verbunden hast."
+	echo 
+	gewuenschte_ip=192.168.1.136
+	aktuelle_ip=$(ip addr show wlx941865658cbc | grep -Po 'inet \K[\d.]+')
+	echo "Ergebnis der Analyse:"
+	echo
+		if [ "$aktuelle_ip" == "$gewuenschte_ip" ]
+			then
+			echo "Du bist mit dem WLAN MartinRouterKing verbunden. Deine IP-Adresse lautet: $aktuelle_ip ."
+			echo
+			echo "Sehr gut! Nun kann es weiter gehen!"
+		else 
+			echo "Achtung, Du bist nicht mit dem richtigen WLAN verbunden! Deine IP-Adresse lautet: $aktuelle_ip ."
+			echo
+			echo "Logge Dich in das WLAN MartinRouterKing ein!"
+			echo
+			echo "Das Passwort für das WLAN lautet: roboterformation ."
+			exit 42;
+		fi
+	
+	echo =============================================================================================================================================
+	echo "Abschließend wird nun noch die Kameralokalisierungssoftware gestartet!"
+	echo
+	echo "Dies geschieht im Verzeichnis /ProjektKamera/RobotLocalizationUni/ mit dem Befehl make."
+	echo
+	echo "Dieser Befehl kompiliert das Projektverzeichnis und wird nun ausgeführt."
+	echo
+	echo "Gestartet wird die Software dann mit dem Befehl ./output. Dieser wird nun ausgeführt."
+	echo
+	sleep 5
+	./kamera.sh
+	echo =============================================================================================================================================
+	echo "Falls es einen Fehler gab: Vergewissere Dich, dass das USB-Kamerakabel im PC steckt!"
+	echo
+	echo "Wahrscheinlich gab es keinen Fehler und es haben sich nun viele neue Fenster geöffnet."
+	echo
+	echo "Klicke nun das Kamerafenster an und drücke nacheinander folgende Tastenkombinationen:"
+	echo
+	echo "l und 2 (gleichzeitig)"
+	echo "c"
+	echo "m"
+	echo "p"
+	echo
+	echo =============================================================================================================================================
+	echo "Nun ist die Kamera richtig eingestellt und es kann endlich los gehen!"
+	echo
+	echo "Entscheide dich nun für einen Erkennungsmodus! Du kannst zwischen 3 Modi wählen:"
+	echo
+	echo "1. FARBERKENNUNG aktivieren mit der Eingabe von dem Buchstaben k"
+	echo "			Roboter werden automatisch nach ihren Farben (innerer kleiner Kreis) zugeordnet:"
+	echo "			robot_1= schwarz; robot_2= rot; robot_3= grün; robot_4= blau"
+	echo
+	echo "2. MANUELLES SETUP DER ROBOTER aktivieren mit der Eingabe von dem Buchstaben r"
+	echo "			1.Schritt: Zahl für Roboter zum Konfigurieren wählen (warped) (1-4)"
+	echo "			2.Schritt: auf Roboter Doppelklicken (warped)"
+	echo "			3.Schritt: irgendeine Taste drücken (warped)"
+	echo "			4.Schritt: in Ausgabefenster des Programms wechseln und"
+	echo "			die angezeigten Werte des Doppelklicks mit Space als Trennzeichen eingeben (Bsp. 187 69)"
+	echo "			--> sollte man aufgefordert werden die Werte erneut einzugeben"
+	echo "			-> Werte erneut eingeben (Problem: es wurden Zeichen davor in dieses Fenster eingegeben)"
+	echo "			5.Schritt: das warped-Window wieder anwählen (!!!)"
+	echo "			Der Roboter wurde konfiguriert. Zum konfigurieren weiterer Roboter --> r drücken"
+	echo "			Ein Roboter ist korrekt konfiguriert, wenn dieser im Ausgabefenster erkannt wird,"
+	echo "			also aktuelle Positionswerte angezeigt werden."
+	echo
+	echo "3. ROBOTER WERDEN AUTOMATISCH JE NACH INTERNER ZUORDNUNG KONFIGURIERT aktivieren mit der Eingabe von dem Buchstaben x"
+	echo "			Einfach nur zusehen und staunen :D"
+	echo
+	echo "Abschließend kannst du noch zwischen dem manuellen Fahren (d, 1, 2, 3, 4) oder mehreren Formationen (f, s, + ggf. 0 bzw. a) wählen."
+	echo "(Näheres hierzu findest du im WIKi unter - ProjektgruppeWiSe2324 - Funktionsübersicht)"
+	echo
+	echo "Viel Spaß! Du kannst dieses Terminalfenster nun schließen! Tschüss!"
+	echo =============================================================================================================================================
+	echo
+	
+elif [ "$WeiterOderNicht" == "j" ]
+	then
+	echo =============================================================================================================================================
+	echo "Auf gehts! Im ersten Schritt wird sich nun ein Terminal öffnen, welches den Befehl roscore ausführt. Dieser Befehl startet somit ROS!"
+	echo =============================================================================================================================================
+	sleep 5
+	./roscore.sh
+	echo "Im zweiten Schritt wird sich nun ein weiteres Terminal öffnen, welches den Befehl rosrun ros_bridge_server rosrun ros_bridge_server ausführt."
+	echo
+	echo "Dieser Befehl startet somit den ROS Bridge Server, dieser wird für die kabellose Kommunikation zwischen dem Roboter und dem PC benötigt."
+	echo =============================================================================================================================================
+	sleep 5
+	./rosrun.sh
+	echo "Nun wird überprüft, ob Du dich mit dem richtigen WLAN (MartinRouterKing) verbunden hast."
+	echo 
+	gewuenschte_ip=192.168.1.136
+	aktuelle_ip=$(ip addr show wlx941865658cbc | grep -Po 'inet \K[\d.]+')
+	echo "Ergebnis der Analyse:"
+	echo
+		if [ "$aktuelle_ip" == "$gewuenschte_ip" ]
+			then
+			echo "Du bist mit dem WLAN MartinRouterKing verbunden. Deine IP-Adresse lautet: $aktuelle_ip ."
+			echo
+			echo "Sehr gut! Nun kann es weiter gehen!"
+		else 
+			echo "Achtung, Du bist nicht mit dem richtigen WLAN verbunden! Deine IP-Adresse lautet: $aktuelle_ip ."
+			echo
+			echo "Logge Dich in das WLAN MartinRouterKing ein!"
+			echo
+			echo "Das Passwort für das WLAN lautet: roboterformation ."
+			exit 42;
+		fi
+	
+	echo =============================================================================================================================================
+	echo "Abschließend wird nun noch die Kameralokalisierungssoftware gestartet!"
+	echo
+	echo "Dies geschieht im Verzeichnis /ProjektKamera/RobotLocalizationUni/ mit dem Befehl make."
+	echo
+	echo "Dieser Befehl kompiliert das Projektverzeichnis und wird nun ausgeführt."
+	echo
+	echo "Gestartet wird die Software dann mit dem Befehl ./output. Dieser wird nun ausgeführt."
+	echo
+	sleep 5
+	./kamera.sh
+	echo =============================================================================================================================================
+	echo "Falls es einen Fehler gab: Vergewissere Dich, dass das USB-Kamerakabel im PC steckt!"
+	echo
+	echo "Wahrscheinlich gab es keinen Fehler und es haben sich nun viele neue Fenster geöffnet."
+	echo
+	echo "Klicke nun das Kamerafenster an und drücke nacheinander folgende Tastenkombinationen:"
+	echo
+	echo "l und 2 (gleichzeitig)"
+	echo "c"
+	echo "m"
+	echo "p"
+	echo
+	echo =============================================================================================================================================
+	echo "Nun ist die Kamera richtig eingestellt und es kann endlich los gehen!"
+	echo
+	echo "Entscheide dich nun für einen Erkennungsmodus! Du kannst zwischen 3 Modi wählen:"
+	echo
+	echo "1. FARBERKENNUNG aktivieren mit der Eingabe von dem Buchstaben k"
+	echo "			Roboter werden automatisch nach ihren Farben (innerer kleiner Kreis) zugeordnet:"
+	echo "			robot_1= schwarz; robot_2= rot; robot_3= grün; robot_4= blau"
+	echo
+	echo "2. MANUELLES SETUP DER ROBOTER aktivieren mit der Eingabe von dem Buchstaben r"
+	echo "			1.Schritt: Zahl für Roboter zum Konfigurieren wählen (warped) (1-4)"
+	echo "			2.Schritt: auf Roboter Doppelklicken (warped)"
+	echo "			3.Schritt: irgendeine Taste drücken (warped)"
+	echo "			4.Schritt: in Ausgabefenster des Programms wechseln und"
+	echo "			die angezeigten Werte des Doppelklicks mit Space als Trennzeichen eingeben (Bsp. 187 69)"
+	echo "			--> sollte man aufgefordert werden die Werte erneut einzugeben"
+	echo "			-> Werte erneut eingeben (Problem: es wurden Zeichen davor in dieses Fenster eingegeben)"
+	echo "			5.Schritt: das warped-Window wieder anwählen (!!!)"
+	echo "			Der Roboter wurde konfiguriert. Zum konfigurieren weiterer Roboter --> r drücken"
+	echo "			Ein Roboter ist korrekt konfiguriert, wenn dieser im Ausgabefenster erkannt wird,"
+	echo "			also aktuelle Positionswerte angezeigt werden."
+	echo
+	echo "3. ROBOTER WERDEN AUTOMATISCH JE NACH INTERNER ZUORDNUNG KONFIGURIERT aktivieren mit der Eingabe von dem Buchstaben x"
+	echo "			Einfach nur zusehen und staunen :D"
+	echo
+	echo "Abschließend kannst du noch zwischen dem manuellen Fahren (d, 1, 2, 3, 4) oder mehreren Formationen (f, s, + ggf. 0 bzw. a) wählen."
+	echo "(Näheres hierzu findest du im WIKi unter - ProjektgruppeWiSe2324 - Funktionsübersicht)"
+	echo
+	echo "Viel Spaß! Du kannst dieses Terminalfenster nun schließen! Tschüss!"
+	echo =============================================================================================================================================
+	echo
+		
+elif [ "$WeiterOderNicht" == "N" ]
+	then
+	echo
+	echo "Wir wünschen noch einen schönen Tag! Auf Wiedersehen!"
+	
+elif [ "$WeiterOderNicht" == "n" ]
+	then
+	echo
+	echo "Wir wünschen noch einen schönen Tag! Auf Wiedersehen!"
+	
+else
+	echo
+	echo "Falsche Eingabe! Das Programmende wurde erreicht! Bitte neu starten!"
+fi
