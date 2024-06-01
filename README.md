@@ -18,3 +18,5 @@ ProjektgruppeWiSe2324
    ### Wichtig zum Starten des Programms
    - Router: MartinRouterKing
    - Bash-File starten
+
+Alle Versionen sind unter "~/Documents/NewGeneration" zu finden!!
