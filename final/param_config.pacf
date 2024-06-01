@@ -1,0 +1,44 @@
+-----===== Your Current Config =====-----
+Threshold Mode (Binary) # 0
+Blur Mode # 0
+Bluring Size (1:=3 ,2:=5 etc.) # 9
+Canny Threshold Low # 12
+Canny Threshold High # 35
+Displaywindow Size (in %) # 0
+Lower Threshold Value # 80
+Higher Threshold Value # 255
+Square Detection (Calib. Mode) # 1
+Clear Gray Circledetection Mode # 1
+Display Mode # 1
+Binary (0) or Adaptive (1) Threshold # 0
+_________________________________________
+
+-----===== Your Current Config =====-----
+Threshold Mode (Binary) # 1
+Blur Mode # 0
+Bluring Size (1:=3 ,2:=5 etc.) # 9
+Canny Threshold Low # 12
+Canny Threshold High # 35
+Displaywindow Size (in %) # 0
+Lower Threshold Value # 80
+Higher Threshold Value # 255
+Square Detection (Calib. Mode) # 1
+Clear Gray Circledetection Mode # 1
+Display Mode # 1
+Binary (0) or Adaptive (1) Threshold # 0
+_________________________________________
+
+-----===== Your Current Config =====-----
+Threshold Mode (Binary) # 0
+Blur Mode # 1
+Bluring Size (1:=3 ,2:=5 etc.) # 7
+Canny Threshold Low # 60
+Canny Threshold High # 180
+Displaywindow Size (in %) # 0
+Lower Threshold Value # 80
+Higher Threshold Value # 255
+Square Detection (Calib. Mode) # 1
+Clear Gray Circledetection Mode # 1
+Display Mode # 1
+Binary (0) or Adaptive (1) Threshold # 0
+_________________________________________
